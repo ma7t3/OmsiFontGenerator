@@ -261,6 +261,7 @@ void MainWindow::on_actionSave_triggered() {
     QString fontName = ui->leFontName->text();
     QString fontFileName = ui->leFileName->text();
     int fontCharGap = ui->sbGapBetweenCharacters->value();
+    bool equalNumberWidth = ui->cbEqualNumberWidth->isChecked();
 
     QJsonDocument doc;
     QJsonObject fontObj = {
@@ -275,6 +276,7 @@ void MainWindow::on_actionSave_triggered() {
         {"lineSpace", lineSpace},
         {"addAsc", addAsc},
         {"addDesc", addDesc},
+        {"equalNumberWidth", equalNumberWidth},
         {"font", fontObj}
     };
 
@@ -314,6 +316,7 @@ void MainWindow::on_actionOpen_triggered() {
     ui->sbLineSpacing->setValue(obj.value("lineSpace").toInt(0));
     ui->sbExtraAscent->setValue(obj.value("addAsc").toInt(0));
     ui->sbExtraDescent->setValue(obj.value("addDesc").toInt(0));
+    ui->cbEqualNumberWidth->setChecked(obj.value("equalNumberWidth").toBool(false));
 
     QJsonObject fontObj = obj.value("font").toObject();
 
@@ -339,4 +342,3 @@ void MainWindow::on_actionNew_triggered() {
     ui->leFileName->clear();
     ui->sbGapBetweenCharacters->setValue(0);
 }
-
