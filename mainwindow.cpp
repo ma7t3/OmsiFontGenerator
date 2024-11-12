@@ -31,6 +31,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->cbDrawGap, &QCheckBox::stateChanged, this, &MainWindow::updatePreview);
     connect(ui->cbDisableAntialais, &QCheckBox::stateChanged, this, &MainWindow::updatePreview);
 
+    connect(ui->cbEqualNumberWidth, &QCheckBox::stateChanged, this, &MainWindow::updatePreview);
+
     connect(ui->twChars, &QTreeWidget::currentItemChanged, this, &MainWindow::updatePreview);
 
     connect(ui->pbExportFont, &QPushButton::clicked, this, &MainWindow::on_actionExport_Font_triggered);
@@ -75,6 +77,14 @@ QPicture MainWindow::drawPicture(const bool &debugMode) {
 
     _currentFontHeight = fm.height() + addAscent + addDescent;
 
+    int numberWidth = 0;
+    bool equalNumberWidth = ui->cbEqualNumberWidth->isChecked();
+    const QStringList numbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    if(equalNumberWidth) {
+        for(QString ch : numbers)
+            numberWidth = qMax(numberWidth, fm.boundingRect(ch).width());
+    }
+
     // Calculate space width
     int spaceWidth = fm.horizontalAdvance("X X") - fm.horizontalAdvance("XX");
 
@@ -84,6 +94,8 @@ QPicture MainWindow::drawPicture(const bool &debugMode) {
         for(QString ch : line.split("")) {
             if(ch == " ")
                 currentLineWidth += spaceWidth + charSpacing;
+            else if(equalNumberWidth && numbers.contains(ch))
+                currentLineWidth += numberWidth + charSpacing;
             else
                 currentLineWidth += fm.boundingRect(ch).width() + charSpacing;
         }
@@ -119,6 +131,13 @@ QPicture MainWindow::drawPicture(const bool &debugMode) {
             if(ch == " ")
                 r.setWidth(spaceWidth);
 
+            int oldNumberWidthDiff = 0;
+            if(equalNumberWidth && numbers.contains(ch)) {
+                int oldNumberWidth = r.width();
+                r.setWidth(numberWidth);
+                oldNumberWidthDiff = r.width() - oldNumberWidth;
+            }
+
             if(ui->cbDrawBoundingboxes->isChecked() && debugMode) {
                 p.setPen(Qt::red);
             } else {
@@ -137,7 +156,7 @@ QPicture MainWindow::drawPicture(const bool &debugMode) {
                 p.setBrush(Qt::black);
 
             p.setPen(Qt::white);
-            p.drawText(currentX - r.x(), currentY + addAscent, ch);
+            p.drawText(currentX - r.x() + (oldNumberWidthDiff / 2), currentY + addAscent, ch);
 
             // Add to list
             QTreeWidgetItem *itm = new QTreeWidgetItem(ui->twChars);
