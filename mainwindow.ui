@@ -77,6 +77,19 @@ abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^
             </widget>
            </item>
            <item>
+            <spacer name="horizontalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
             <widget class="QLabel" name="label_3">
              <property name="text">
               <string>Additional ascent:</string>
@@ -96,8 +109,19 @@ abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^
            <item>
             <widget class="QSpinBox" name="sbExtraDescent"/>
            </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
            <item>
-            <spacer name="horizontalSpacer">
+            <widget class="QCheckBox" name="cbEqualNumberWidth">
+             <property name="text">
+              <string>Equal character width for numbers</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_4">
              <property name="orientation">
               <enum>Qt::Orientation::Horizontal</enum>
              </property>
@@ -109,14 +133,17 @@ abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^
              </property>
             </spacer>
            </item>
+           <item>
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Additional character side margin:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="sbExtraSidemargin"/>
+           </item>
           </layout>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="cbEqualNumberWidth">
-           <property name="text">
-            <string>Equal character width for numbers</string>
-           </property>
-          </widget>
          </item>
         </layout>
        </widget>

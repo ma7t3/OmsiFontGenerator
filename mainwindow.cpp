@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->sbExtraAscent, &QSpinBox::valueChanged, this, &MainWindow::updatePreview);
     connect(ui->sbExtraDescent, &QSpinBox::valueChanged, this, &MainWindow::updatePreview);
+    connect(ui->sbExtraSidemargin, &QSpinBox::valueChanged, this, &MainWindow::updatePreview);
 
     connect(ui->cbDrawBoundingboxes, &QCheckBox::stateChanged, this, &MainWindow::updatePreview);
     connect(ui->cbDrawGap, &QCheckBox::stateChanged, this, &MainWindow::updatePreview);
@@ -66,6 +67,7 @@ QPicture MainWindow::drawPicture(const bool &debugMode) {
     int charSpacing = ui->sbCharSpacing->value();
     int addAscent = ui->sbExtraAscent->value();
     int addDescent = ui->sbExtraDescent->value();
+    int extraSideMargin = ui->sbExtraSidemargin->value();
 
     QString charset = ui->pteCharset->toPlainText();
     QStringList charsetLines = charset.split("\n");
@@ -93,11 +95,11 @@ QPicture MainWindow::drawPicture(const bool &debugMode) {
         int currentLineWidth = 0;
         for(QString ch : line.split("")) {
             if(ch == " ")
-                currentLineWidth += spaceWidth + charSpacing;
+                currentLineWidth += spaceWidth + charSpacing + (extraSideMargin * 2);
             else if(equalNumberWidth && numbers.contains(ch))
-                currentLineWidth += numberWidth + charSpacing;
+                currentLineWidth += numberWidth + charSpacing + (extraSideMargin * 2);
             else
-                currentLineWidth += fm.boundingRect(ch).width() + charSpacing;
+                currentLineWidth += fm.boundingRect(ch).width() + charSpacing + (extraSideMargin * 2);
         }
 
         if(maxWidth < currentLineWidth)
@@ -138,6 +140,8 @@ QPicture MainWindow::drawPicture(const bool &debugMode) {
                 oldNumberWidthDiff = r.width() - oldNumberWidth;
             }
 
+            r.setWidth(r.width() + (2 * extraSideMargin));
+
             if(ui->cbDrawBoundingboxes->isChecked() && debugMode) {
                 p.setPen(Qt::red);
             } else {
@@ -156,7 +160,7 @@ QPicture MainWindow::drawPicture(const bool &debugMode) {
                 p.setBrush(Qt::black);
 
             p.setPen(Qt::white);
-            p.drawText(currentX - r.x() + (oldNumberWidthDiff / 2), currentY + addAscent, ch);
+            p.drawText(currentX - r.x() + (oldNumberWidthDiff / 2) + extraSideMargin, currentY + addAscent, ch);
 
             // Add to list
             QTreeWidgetItem *itm = new QTreeWidgetItem(ui->twChars);
@@ -257,6 +261,7 @@ void MainWindow::on_actionSave_triggered() {
     int lineSpace = ui->sbLineSpacing->value();
     int addAsc = ui->sbExtraAscent->value();
     int addDesc = ui->sbExtraDescent->value();
+    int extraSideMargin = ui->sbExtraSidemargin->value();
     QString font = _fontSelector->currentFont().toString();
     QString fontName = ui->leFontName->text();
     QString fontFileName = ui->leFileName->text();
@@ -276,6 +281,7 @@ void MainWindow::on_actionSave_triggered() {
         {"lineSpace", lineSpace},
         {"addAsc", addAsc},
         {"addDesc", addDesc},
+        {"extraSideMargin", extraSideMargin},
         {"equalNumberWidth", equalNumberWidth},
         {"font", fontObj}
     };
@@ -316,6 +322,7 @@ void MainWindow::on_actionOpen_triggered() {
     ui->sbLineSpacing->setValue(obj.value("lineSpace").toInt(0));
     ui->sbExtraAscent->setValue(obj.value("addAsc").toInt(0));
     ui->sbExtraDescent->setValue(obj.value("addDesc").toInt(0));
+    ui->sbExtraSidemargin->setValue(obj.value("extraSideMargin").toInt(0));
     ui->cbEqualNumberWidth->setChecked(obj.value("equalNumberWidth").toBool(false));
 
     QJsonObject fontObj = obj.value("font").toObject();
@@ -337,6 +344,8 @@ void MainWindow::on_actionNew_triggered() {
     ui->sbLineSpacing->setValue(ui->sbLineSpacing->minimum());
     ui->sbExtraAscent->setValue(0);
     ui->sbExtraDescent->setValue(0);
+    ui->sbExtraSidemargin->setValue(0);
+    ui->cbEqualNumberWidth->setChecked(false);
     _fontSelector->setCurrentFont(_defaultFont);
     ui->leFontName->clear();
     ui->leFileName->clear();
