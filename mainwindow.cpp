@@ -187,6 +187,7 @@ QPicture MainWindow::drawPicture(const bool &debugMode) {
 QPixmap MainWindow::renderPixmap() {
     QPicture pic = drawPicture(false);
     QPixmap pixmap(pic.width(), pic.height());
+    pixmap.fill(Qt::black);
     QPainter p(&pixmap);
     p.drawPicture(0, 0, pic);
     return pixmap;
