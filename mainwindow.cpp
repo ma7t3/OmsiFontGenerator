@@ -18,27 +18,27 @@ MainWindow::MainWindow(QWidget *parent) :
     _fontSelector->setCurrentFont(_defaultFont);
 
     // connect-commands
-    connect(_fontSelector, &QFontDialog::currentFontChanged, this, &MainWindow::updatePreview);
-    connect(_fontSelector, &QFontDialog::currentFontChanged, this, &MainWindow::updateCharsetFont);
+    connect(_fontSelector,           &QFontDialog::currentFontChanged, this, &MainWindow::updatePreview);
+    connect(_fontSelector,           &QFontDialog::currentFontChanged, this, &MainWindow::updateCharsetFont);
 
-    connect(ui->pteCharset, &QPlainTextEdit::textChanged, this, &MainWindow::updatePreview);
+    connect(ui->pteCharset,          &QPlainTextEdit::textChanged,     this, &MainWindow::updatePreview);
 
-    connect(ui->sbCharSpacing, &QSpinBox::valueChanged, this, &MainWindow::updatePreview);
-    connect(ui->sbLineSpacing, &QSpinBox::valueChanged, this, &MainWindow::updatePreview);
+    connect(ui->sbCharSpacing,       &QSpinBox::valueChanged,          this, &MainWindow::updatePreview);
+    connect(ui->sbLineSpacing,       &QSpinBox::valueChanged,          this, &MainWindow::updatePreview);
 
-    connect(ui->sbExtraAscent, &QSpinBox::valueChanged, this, &MainWindow::updatePreview);
-    connect(ui->sbExtraDescent, &QSpinBox::valueChanged, this, &MainWindow::updatePreview);
-    connect(ui->sbExtraSidemargin, &QSpinBox::valueChanged, this, &MainWindow::updatePreview);
+    connect(ui->sbExtraAscent,       &QSpinBox::valueChanged,          this, &MainWindow::updatePreview);
+    connect(ui->sbExtraDescent,      &QSpinBox::valueChanged,          this, &MainWindow::updatePreview);
+    connect(ui->sbExtraSidemargin,   &QSpinBox::valueChanged,          this, &MainWindow::updatePreview);
 
-    connect(ui->cbDrawBoundingboxes, &QCheckBox::stateChanged, this, &MainWindow::updatePreview);
-    connect(ui->cbDrawGap, &QCheckBox::stateChanged, this, &MainWindow::updatePreview);
-    connect(ui->cbDisableAntialais, &QCheckBox::stateChanged, this, &MainWindow::updatePreview);
+    connect(ui->cbDrawBoundingboxes, &QCheckBox::checkStateChanged,    this, &MainWindow::updatePreview);
+    connect(ui->cbDrawGap,           &QCheckBox::checkStateChanged,    this, &MainWindow::updatePreview);
+    connect(ui->cbDisableAntialais,  &QCheckBox::checkStateChanged,    this, &MainWindow::updatePreview);
 
-    connect(ui->cbEqualNumberWidth, &QCheckBox::stateChanged, this, &MainWindow::updatePreview);
+    connect(ui->cbEqualNumberWidth,  &QCheckBox::checkStateChanged,    this, &MainWindow::updatePreview);
 
-    connect(ui->twChars, &QTreeWidget::currentItemChanged, this, &MainWindow::updatePreview);
+    connect(ui->twChars,             &QTreeWidget::currentItemChanged, this, &MainWindow::updatePreview);
 
-    connect(ui->pbExportFont, &QPushButton::clicked, this, &MainWindow::on_actionExport_Font_triggered);
+    connect(ui->pbExportFont,        &QPushButton::clicked,            this, &MainWindow::on_actionExport_Font_triggered);
 
     updatePreview();
 
