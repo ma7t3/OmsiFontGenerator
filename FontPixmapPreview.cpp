@@ -4,6 +4,7 @@ FontPixmapPreview::FontPixmapPreview(QWidget *parent) : QWidget(parent) {}
 
 void FontPixmapPreview::paintEvent(QPaintEvent *e) {
     QPainter p(this);
+    p.setPen(Qt::NoPen);
     p.drawPicture(0, 0, _picture);
 
     p.end();
