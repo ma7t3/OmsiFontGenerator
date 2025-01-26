@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // connect-commands
     connect(_fontSelector, &QFontDialog::currentFontChanged, this, &MainWindow::updatePreview);
+    connect(_fontSelector, &QFontDialog::currentFontChanged, this, &MainWindow::updateCharsetFont);
+
     connect(ui->pteCharset, &QPlainTextEdit::textChanged, this, &MainWindow::updatePreview);
 
     connect(ui->sbCharSpacing, &QSpinBox::valueChanged, this, &MainWindow::updatePreview);
@@ -48,6 +50,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow() {
     delete ui;
+}
+
+void MainWindow::updateCharsetFont(const QFont &newFont) {
+    QFont defaultFont = ui->pteCharset->font();
+    QFont newFontFixed = newFont;
+    newFontFixed.setPointSizeF(defaultFont.pointSizeF());
+    ui->pteCharset->setFont(newFontFixed);
 }
 
 void MainWindow::updatePreview() {

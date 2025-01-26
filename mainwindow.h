@@ -27,6 +27,7 @@ public:
     ~MainWindow();
 
 private slots:
+    void updateCharsetFont(const QFont &newFont);
     void updatePreview();
     QPicture drawPicture(const bool &debugMode);
 
