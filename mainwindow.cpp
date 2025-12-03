@@ -3,12 +3,17 @@
 
 #include <QDesktopServices>
 
+#include "DlgPreferences.h"
 #include "Metadata.h"
+
+#include <QStandardPaths>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    _fontSelector(new QFontDialog(this)) {
+    _set(Metadata::authorName(), Metadata::applicationName()),
+    _fontSelector(new QFontDialog(this)),
+    _currentSavePath(_set.value("lastSavePath", QDir::homePath()).toString()) {
     ui->setupUi(this);
 
     showMaximized();
@@ -234,7 +239,7 @@ void MainWindow::on_pbExportBMP_clicked() {
 
 
 void MainWindow::on_actionExport_Font_triggered() {
-    QString path = QFileDialog::getExistingDirectory(this, tr("Select your OMSI fonts directory"), "", QFileDialog::ShowDirsOnly);
+    QString path = QFileDialog::getExistingDirectory(this, tr("Select your OMSI fonts directory"), _set.value("omsiDir").toString() + "/Fonts", QFileDialog::ShowDirsOnly);
     if(path.isEmpty())
         return;
 
@@ -311,6 +316,7 @@ void MainWindow::on_actionSave_triggered() {
     f.close();
 
     _currentSavePath = path;
+    _set.setValue("lastSavePath", _currentSavePath);
 }
 
 void MainWindow::on_actionOpen_triggered() {
@@ -399,4 +405,9 @@ void MainWindow::on_actionExportBmp_triggered() {
 
 void MainWindow::on_actionAboutQt_triggered() {
     QMessageBox::aboutQt(this);
+}
+
+void MainWindow::on_actionPreferences_triggered() {
+    DlgPreferences dlg;
+    dlg.exec();
 }

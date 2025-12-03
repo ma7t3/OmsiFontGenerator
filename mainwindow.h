@@ -12,6 +12,7 @@
 #include <QFileDialog>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QSettings>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -51,8 +52,11 @@ private slots:
 
     void on_actionAboutQt_triggered();
 
+    void on_actionPreferences_triggered();
+
 private:
     Ui::MainWindow *ui;
+    QSettings _set;
 
     QFont _defaultFont;
 

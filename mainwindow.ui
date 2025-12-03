@@ -403,7 +403,14 @@ abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^
     <addaction name="actionExport_Font"/>
     <addaction name="actionExportBmp"/>
    </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionPreferences"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
    <addaction name="menuFont"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -469,6 +476,14 @@ abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^
   <action name="actionAboutQt">
    <property name="text">
     <string>About Qt</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+,</string>
    </property>
   </action>
  </widget>

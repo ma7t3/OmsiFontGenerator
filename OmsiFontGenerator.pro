@@ -9,18 +9,21 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    DlgPreferences.cpp \
     FontPixmapPreview.cpp \
     Metadata.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    DlgPreferences.h \
     FontPixmapPreview.h \
     Metadata.h \
     OmsiChar.h \
     mainwindow.h
 
 FORMS += \
+    DlgPreferences.ui \
     mainwindow.ui
 
 # Default rules for deployment.
