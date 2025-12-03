@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>de_DE.qm</file>
+        <file>en_US.qm</file>
+        <file>qtbase_en.qm</file>
+        <file>qtbase_de.qm</file>
+    </qresource>
+</RCC>

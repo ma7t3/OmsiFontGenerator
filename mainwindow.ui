@@ -37,7 +37,7 @@
             </font>
            </property>
            <property name="plainText">
-            <string>ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ
+            <string notr="true">ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ
 abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^ 
 1234567890!&quot;§$%&amp;/\()[]{}?+*~#'-,;.:|</string>
            </property>
