@@ -227,7 +227,7 @@ abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^
       <property name="title">
        <string>Preview</string>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
+      <layout class="QVBoxLayout" name="verticalLayout_5">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
@@ -276,13 +276,32 @@ abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="FontPixmapPreview" name="fontPixmapPreview" native="true">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+          <widget class="QScrollArea" name="scrollArea">
+           <property name="widgetResizable">
+            <bool>true</bool>
            </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>1025</width>
+              <height>228</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <widget class="FontPixmapPreview" name="fontPixmapPreview" native="true">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
           </widget>
          </item>
          <item>
