@@ -340,6 +340,9 @@ void MainWindow::on_actionOpen_triggered() {
         return;
     }
 
+    _currentSavePath = path;
+    _set.setValue("lastSavePath", _currentSavePath);
+
     QJsonObject obj = doc.object();
 
     ui->pteCharset->setPlainText(obj.value("charset").toString(""));
