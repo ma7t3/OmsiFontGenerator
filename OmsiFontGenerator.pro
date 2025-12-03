@@ -10,11 +10,13 @@ CONFIG += c++17
 
 SOURCES += \
     FontPixmapPreview.cpp \
+    Metadata.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     FontPixmapPreview.h \
+    Metadata.h \
     OmsiChar.h \
     mainwindow.h
 
