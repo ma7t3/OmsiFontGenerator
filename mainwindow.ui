@@ -386,8 +386,6 @@ abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
-    <addaction name="actionExport_Font"/>
-    <addaction name="actionExportBmp"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -398,7 +396,15 @@ abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^
     <addaction name="actionAboutQt"/>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuFont">
+    <property name="title">
+     <string>Font</string>
+    </property>
+    <addaction name="actionExport_Font"/>
+    <addaction name="actionExportBmp"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuFont"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -436,7 +442,7 @@ abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^
   </action>
   <action name="actionExport_Font">
    <property name="text">
-    <string>Export Font</string>
+    <string>Export Font (BMP and OFT)</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
@@ -454,7 +460,7 @@ abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^
   </action>
   <action name="actionExportBmp">
    <property name="text">
-    <string>Export BMP</string>
+    <string>Export BMP individually</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+E</string>
