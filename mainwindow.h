@@ -49,6 +49,8 @@ private slots:
 
     void on_actionExportBmp_triggered();
 
+    void on_actionAboutQt_triggered();
+
 private:
     Ui::MainWindow *ui;
 

@@ -382,11 +382,12 @@ void MainWindow::on_actionAbout_triggered() {
 <h1>About %1</h1>
 <table>
 <tr><td><b>Version: </b></td><td>%2</td></tr>
-<tr><td><b>Author: </b></td><td><a href=%3">%4</a></td></tr>
-<tr><td><b>License: </b></td><td><a href="%5">%6</a></td></tr>
-<tr><td><b>GitHub: </b></td><td><a href="%7">%7</a></td></tr>
+<tr><td><b>Qt Version: </b></td><td>%3</td></tr>
+<tr><td><b>Author: </b></td><td><a href="%4">%5</a></td></tr>
+<tr><td><b>License: </b></td><td><a href="%6">%7</a></td></tr>
+<tr><td><b>GitHub: </b></td><td><a href="%8">%8</a></td></tr>
 </table>
-    )").arg(Metadata::applicationName()).arg(Metadata::versionName()).arg(Metadata::authorUrl()).arg(Metadata::authorName()).arg(Metadata::licenseUrl()).arg(Metadata::licenseName()).arg(Metadata::gitHubUrl()));
+    )").arg(Metadata::applicationName()).arg(Metadata::versionName()).arg(qVersion()).arg(Metadata::authorUrl()).arg(Metadata::authorName()).arg(Metadata::licenseUrl()).arg(Metadata::licenseName()).arg(Metadata::gitHubUrl()));
     msg.setIcon(QMessageBox::Information);
     msg.setStandardButtons(QMessageBox::Close);
     msg.exec();
@@ -394,4 +395,8 @@ void MainWindow::on_actionAbout_triggered() {
 
 void MainWindow::on_actionExportBmp_triggered() {
     on_pbExportBMP_clicked();
+}
+
+void MainWindow::on_actionAboutQt_triggered() {
+    QMessageBox::aboutQt(this);
 }
