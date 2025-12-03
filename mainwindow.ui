@@ -356,6 +356,11 @@ abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^
       </item>
       <item>
        <widget class="QPushButton" name="pbExportFont">
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="text">
          <string>Export Font...</string>
         </property>
