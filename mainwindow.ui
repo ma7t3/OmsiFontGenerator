@@ -387,6 +387,7 @@ abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="actionExport_Font"/>
+    <addaction name="actionExportBmp"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -448,6 +449,14 @@ abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionExportBmp">
+   <property name="text">
+    <string>Export BMP</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+E</string>
    </property>
   </action>
  </widget>

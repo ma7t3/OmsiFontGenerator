@@ -47,6 +47,8 @@ private slots:
 
     void on_actionAbout_triggered();
 
+    void on_actionExportBmp_triggered();
+
 private:
     Ui::MainWindow *ui;
 

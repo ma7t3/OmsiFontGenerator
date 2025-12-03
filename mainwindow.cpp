@@ -391,3 +391,7 @@ void MainWindow::on_actionAbout_triggered() {
     msg.setStandardButtons(QMessageBox::Close);
     msg.exec();
 }
+
+void MainWindow::on_actionExportBmp_triggered() {
+    on_pbExportBMP_clicked();
+}
