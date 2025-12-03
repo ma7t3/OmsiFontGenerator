@@ -384,7 +384,15 @@ abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^
     <addaction name="actionExport_Font"/>
     <addaction name="actionQuit"/>
    </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionViewOnGitHub"/>
+    <addaction name="actionAbout"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionNew">
@@ -425,6 +433,16 @@ abcdefghijklmnopqrstuvwxyzäöüß&lt;&gt;^
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionViewOnGitHub">
+   <property name="text">
+    <string>View on GitHub</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>

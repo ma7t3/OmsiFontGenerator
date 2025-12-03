@@ -1,6 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QDesktopServices>
+
+#include "Metadata.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
@@ -365,4 +369,25 @@ void MainWindow::on_actionNew_triggered() {
     ui->leFontName->clear();
     ui->leFileName->clear();
     ui->sbGapBetweenCharacters->setValue(0);
+}
+
+void MainWindow::on_actionViewOnGitHub_triggered() {
+    QDesktopServices::openUrl(QUrl(Metadata::gitHubUrl()));
+}
+
+void MainWindow::on_actionAbout_triggered() {
+    QMessageBox msg;
+    msg.setWindowTitle(tr("About %1").arg(Metadata::applicationName()));
+    msg.setText(tr(R"(
+<h1>About %1</h1>
+<table>
+<tr><td><b>Version: </b></td><td>%2</td></tr>
+<tr><td><b>Author: </b></td><td><a href=%3">%4</a></td></tr>
+<tr><td><b>License: </b></td><td><a href="%5">%6</a></td></tr>
+<tr><td><b>GitHub: </b></td><td><a href="%7">%7</a></td></tr>
+</table>
+    )").arg(Metadata::applicationName()).arg(Metadata::versionName()).arg(Metadata::authorUrl()).arg(Metadata::authorName()).arg(Metadata::licenseUrl()).arg(Metadata::licenseName()).arg(Metadata::gitHubUrl()));
+    msg.setIcon(QMessageBox::Information);
+    msg.setStandardButtons(QMessageBox::Close);
+    msg.exec();
 }
