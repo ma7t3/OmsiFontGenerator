@@ -42,10 +42,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     updatePreview();
 
-    ui->twChars->setColumnWidth(0, 20);
-    ui->twChars->setColumnWidth(1, 20);
-    ui->twChars->setColumnWidth(2, 20);
-    ui->twChars->setColumnWidth(3, 20);
+    ui->twChars->resizeColumnToContents(0);
+    ui->twChars->resizeColumnToContents(1);
+    ui->twChars->resizeColumnToContents(2);
+    ui->twChars->resizeColumnToContents(3);
 }
 
 MainWindow::~MainWindow() {
@@ -189,6 +189,11 @@ QPicture MainWindow::drawPicture(const bool &debugMode) {
         currentY += fm.height() + lineSpacing + addAscent + addDescent;
         currentX = 0;
     }
+
+    ui->twChars->resizeColumnToContents(0);
+    ui->twChars->resizeColumnToContents(1);
+    ui->twChars->resizeColumnToContents(2);
+    ui->twChars->resizeColumnToContents(3);
 
     return pic;
 }
